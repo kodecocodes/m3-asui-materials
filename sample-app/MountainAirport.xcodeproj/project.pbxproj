@@ -285,6 +285,7 @@
 		18D775B522AD944300AE281E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Ray Wenderlich";
