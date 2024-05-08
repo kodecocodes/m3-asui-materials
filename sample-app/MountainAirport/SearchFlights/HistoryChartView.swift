@@ -80,7 +80,7 @@ struct HistoryChartView: View {
           stroke: StrokeStyle(lineWidth: 1.0, dash: [5.0, 5.0])
         )
         .foregroundStyle(.white.opacity(0.8))
-        AxisValueLabel() {
+        AxisValueLabel {
           if let value = value.as(Int.self) {
             Text(value, format: .number)
               .foregroundColor(Color.white.opacity(0.8))
@@ -92,7 +92,7 @@ struct HistoryChartView: View {
       AxisMarks(values: .automatic) { value in
         AxisGridLine(centered: false, stroke: StrokeStyle(lineWidth: 1.0))
           .foregroundStyle(Color.white.opacity(0.8))
-        AxisValueLabel() {
+        AxisValueLabel {
           if let value = value.as(String.self) {
             Text(value)
               .font(.footnote)
