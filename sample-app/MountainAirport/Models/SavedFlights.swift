@@ -34,6 +34,7 @@ import SwiftUI
 
 class SavedFlights: ObservableObject {
   @Published var savedFlightIds: [Int] = []
+  // swiftlint:disable:next attributes
   @AppStorage("SavedFlight") var savedFlightStorage = "" {
     didSet {
       savedFlightIds = getSavedFlights()

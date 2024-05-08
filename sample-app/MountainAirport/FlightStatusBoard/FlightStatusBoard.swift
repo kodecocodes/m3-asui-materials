@@ -36,6 +36,7 @@ struct FlightStatusBoard: View {
   @State var flights: [FlightInformation]
   var flightToShow: FlightInformation?
   @State private var hidePast = false
+  // swiftlint:disable:next attributes
   @AppStorage("FlightStatusCurrentTab") var selectedTab = 1
   @State var highlightedIds: [Int] = []
 

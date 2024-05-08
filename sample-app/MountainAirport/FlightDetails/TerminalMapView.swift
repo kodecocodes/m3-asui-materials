@@ -57,9 +57,11 @@ struct TerminalMapView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       TerminalMapView(
+        // swiftlint:disable:next force_unwrapping
         flight: FlightData().flights.first { $0.terminal == "A" }!
       )
       TerminalMapView(
+        // swiftlint:disable:next force_unwrapping
         flight: FlightData().flights.first { $0.terminal == "B" }!
       )
     }

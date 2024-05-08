@@ -29,6 +29,7 @@
 import SwiftUI
 
 struct TerminalBView: View {
+  // swiftlint:disable:next attributes
   @Environment(\.dismiss) private var dismiss
 
   var body: some View {

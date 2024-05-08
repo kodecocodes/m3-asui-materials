@@ -36,6 +36,7 @@ class AppEnvironment: ObservableObject {
   @Published var lastFlightId: Int?
   @Published var awardList: [AwardInformation] = []
 
+  // swiftlint:disable:next function_body_length
   init() {
     awardList.append(
       AwardInformation(
