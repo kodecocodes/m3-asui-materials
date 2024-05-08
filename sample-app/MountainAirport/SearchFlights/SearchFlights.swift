@@ -38,6 +38,12 @@ struct SearchFlights: View {
   @State private var directionFilter: FlightDirection = .none
   @State private var city = ""
   @State private var runningSearch = false
+  // swiftlint:disable:next attributes
+  @Environment(\.colorScheme) var colorScheme: ColorScheme
+
+  var pickerBackgroundColor: Color {
+    colorScheme == .dark ? .black : .white
+  }
 
   var matchingFlights: [FlightInformation] {
     var matchingFlights = flightData
@@ -75,7 +81,7 @@ struct SearchFlights: View {
           Text("Arrivals").tag(FlightDirection.arrival)
           Text("Departures").tag(FlightDirection.departure)
         }
-        .background(Color.white)
+        .background(pickerBackgroundColor)
         .pickerStyle(SegmentedPickerStyle())
         List {
           ForEach(flightDates, id: \.hashValue) { date in
