@@ -60,10 +60,19 @@ public struct SeededRandomGenerator: RandomNumberGenerator {
 class FlightData: ObservableObject {
   @Published var flights: [FlightInformation] = []
   var canceledFlight: FlightInformation {
-    flights.first { $0.status == .canceled }!
+    guard let canceledFlight = flights.first(where: { $0.status == .canceled }) else {
+      fatalError("No flight exists with cancelled status")
+    }
+    return canceledFlight
   }
   var departingOnTimeFlight: FlightInformation {
-    flights.first { $0.status == .ontime && $0.direction == .departure }!
+    guard let departingOnTimeFlight = flights.first(where: {
+      $0.status == .ontime && $0.direction == .departure
+    }) else {
+      fatalError("No flight exists with ontime status and departure direction")
+    }
+
+    return departingOnTimeFlight
   }
 
   // Seeded random numbers so the sample data is same each time
