@@ -67,12 +67,9 @@ struct FlightList: View {
             rowHighlighted(flight.id) ? Color.yellow.opacity(0.6) : Color.clear
           )
         }
-        .navigationDestination(
-          for: FlightInformation.self,
-          destination: { flight in
-            FlightDetails(flight: flight)
-          }
-        )
+        .navigationDestination(for: FlightInformation.self) { flight in
+          FlightDetails(flight: flight)
+        }
         .onAppear {
           scrollProxy.scrollTo(nextFlightId, anchor: .center)
         }
