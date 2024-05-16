@@ -33,7 +33,7 @@
 import SwiftUI
 
 extension AnyTransition {
-  static var buttonNameTransition: AnyTransition {
+  static var terminalMapTransition: AnyTransition {
     let insertion = AnyTransition.move(edge: .trailing)
       .combined(with: .opacity)
     let removal = AnyTransition.scale(scale: 0.0)
@@ -95,7 +95,7 @@ struct FlightInfoPanel: View {
                 Text("Show Terminal Map")
               }
             }
-            .transition(.buttonNameTransition)
+            .transition(.scale)
             Spacer()
             Image(systemName: "airplane.circle")
               .imageScale(.large)
@@ -113,7 +113,7 @@ struct FlightInfoPanel: View {
         }
         if showTerminal {
           TerminalMapView(flight: flight)
-            .transition(.push(from: .leading))
+            .transition(.terminalMapTransition)
         }
         Spacer()
       }
