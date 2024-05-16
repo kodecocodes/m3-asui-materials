@@ -28,55 +28,32 @@
 
 import SwiftUI
 
-struct TerminalStoresView: View {
-  var flight: FlightInformation
-
-  var stores: [TerminalStore] {
-    if flight.terminal == "A" {
-      return TerminalStore.terminalStoresA
-    } else {
-      return TerminalStore.terminalStoresB
-    }
-  }
+struct AwardStars: View {
+  var stars: Int = 3
 
   var body: some View {
-    GeometryReader { proxy in
-      let width = proxy.size.width
-      let height = proxy.size.height
-      let storeWidth = width / 6
-      let storeHeight = storeWidth / 1.75
-      let storeSpacing = width / 5
-      let firstStoreOffset = flight.terminal == "A" ?
-      width - storeSpacing :
-      storeSpacing - storeWidth
-      let direction = flight.terminal == "A" ? -1.0 : 1.0
-      ForEach(stores.indices, id: \.self) { index in
-        let store = stores[index]
-        let xOffset =
-        Double(index) * storeSpacing * direction + firstStoreOffset
-        RoundedRectangle(cornerRadius: 5.0)
-          .foregroundColor(
-            Color(
-              hue: 0.3333,
-              saturation: 1.0 - store.howBusy,
-              brightness: 1.0 - store.howBusy
-            )
-          )
-          .overlay(
-            Text(store.shortName)
-              .font(.footnote)
-              .foregroundColor(.white)
-              .shadow(radius: 5)
-          )
-          .frame(width: storeWidth, height: storeHeight)
-          .offset(x: xOffset, y: height * 0.4)
+    Canvas { gContext, size in
+      guard let starSymbol = gContext.resolveSymbol(id: 0) else {
+        return
       }
+      let centerOffset = (size.width - (20 * Double(stars))) / 2.0
+      gContext.translateBy(x: centerOffset, y: size.height / 2.0)
+      for star in 0..<stars {
+        let starXPosition = Double(star) * 20.0
+        let point = CGPoint(x: starXPosition + 8, y: 0)
+        gContext.draw(starSymbol, at: point, anchor: .leading)
+      }
+    } symbols: {
+      Image(systemName: "star.fill")
+        .resizable()
+        .frame(width: 15, height: 15)
+        .tag(0)
     }
   }
 }
 
-struct TerminalStoresView_Previews: PreviewProvider {
+struct AwardStars_Previews: PreviewProvider {
   static var previews: some View {
-    TerminalStoresView(flight: FlightData.generateTestFlight(date: Date()))
+    AwardStars()
   }
 }

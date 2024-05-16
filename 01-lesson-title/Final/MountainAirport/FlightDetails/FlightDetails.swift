@@ -1,15 +1,15 @@
 /// Copyright (c) 2023 Kodeco Inc
-/// 
+///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
 /// in the Software without restriction, including without limitation the rights
 /// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 /// copies of the Software, and to permit persons to whom the Software is
 /// furnished to do so, subject to the following conditions:
-/// 
+///
 /// The above copyright notice and this permission notice shall be included in
 /// all copies or substantial portions of the Software.
-/// 
+///
 /// Notwithstanding the foregoing, you may not use, copy, modify, merge, publish,
 /// distribute, sublicense, create a derivative work, and/or sell copies of the
 /// Software in any work that is designed, intended, or marketed for pedagogical or
@@ -17,7 +17,11 @@
 /// or information technology.  Permission for such use, copying, modification,
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
-/// 
+///
+/// This project and source code may use libraries or frameworks that are
+/// released under various Open-Source licenses. Use of those libraries and
+/// frameworks are governed by their own individual licenses.
+///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,55 +32,58 @@
 
 import SwiftUI
 
-struct TerminalStoresView: View {
+struct FlightDetails: View {
   var flight: FlightInformation
-
-  var stores: [TerminalStore] {
-    if flight.terminal == "A" {
-      return TerminalStore.terminalStoresA
-    } else {
-      return TerminalStore.terminalStoresB
-    }
-  }
+  @State private var showTerminalInfo = false
+  @EnvironmentObject var lastFlightInfo: AppEnvironment
 
   var body: some View {
-    GeometryReader { proxy in
-      let width = proxy.size.width
-      let height = proxy.size.height
-      let storeWidth = width / 6
-      let storeHeight = storeWidth / 1.75
-      let storeSpacing = width / 5
-      let firstStoreOffset = flight.terminal == "A" ?
-      width - storeSpacing :
-      storeSpacing - storeWidth
-      let direction = flight.terminal == "A" ? -1.0 : 1.0
-      ForEach(stores.indices, id: \.self) { index in
-        let store = stores[index]
-        let xOffset =
-        Double(index) * storeSpacing * direction + firstStoreOffset
-        RoundedRectangle(cornerRadius: 5.0)
-          .foregroundColor(
-            Color(
-              hue: 0.3333,
-              saturation: 1.0 - store.howBusy,
-              brightness: 1.0 - store.howBusy
-            )
+    ZStack {
+      Image("background-view")
+        .resizable()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+      VStack(alignment: .leading) {
+        FlightDetailHeader(flight: flight)
+        FlightInfoPanel(flight: flight)
+          .frame(maxWidth: .infinity, alignment: .topLeading)
+          .padding()
+          .background(
+            RoundedRectangle(cornerRadius: 20.0)
+              .opacity(0.3)
           )
-          .overlay(
-            Text(store.shortName)
-              .font(.footnote)
-              .foregroundColor(.white)
-              .shadow(radius: 5)
-          )
-          .frame(width: storeWidth, height: storeHeight)
-          .offset(x: xOffset, y: height * 0.4)
+        Spacer()
       }
+      .foregroundColor(.white)
+      .padding()
+      .navigationTitle("\(flight.airline) Flight \(flight.number)")
+    }
+    .contentShape(Rectangle())
+    .onTapGesture {
+      showTerminalInfo.toggle()
+    }
+    .sheet(isPresented: $showTerminalInfo) {
+      Group {
+        if flight.terminal == "A" {
+          TerminalAView()
+        } else {
+          TerminalBView()
+        }
+      }
+      .presentationDetents([.medium, .large])
+    }
+    .onAppear {
+      lastFlightInfo.lastFlightId = flight.id
     }
   }
 }
 
-struct TerminalStoresView_Previews: PreviewProvider {
+struct FlightDetails_Previews: PreviewProvider {
   static var previews: some View {
-    TerminalStoresView(flight: FlightData.generateTestFlight(date: Date()))
+    NavigationStack {
+      FlightDetails(
+        flight: FlightData.generateTestFlight(date: Date())
+      )
+      .environmentObject(AppEnvironment())
+    }
   }
 }

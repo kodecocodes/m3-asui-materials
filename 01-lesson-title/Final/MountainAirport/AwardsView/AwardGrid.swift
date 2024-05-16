@@ -1,4 +1,4 @@
-/// Copyright (c) 2023 Kodeco Inc
+/// Copyright (c) 2024 Kodeco Inc
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -28,55 +28,51 @@
 
 import SwiftUI
 
-struct TerminalStoresView: View {
-  var flight: FlightInformation
-
-  var stores: [TerminalStore] {
-    if flight.terminal == "A" {
-      return TerminalStore.terminalStoresA
-    } else {
-      return TerminalStore.terminalStoresB
-    }
-  }
+struct AwardGrid: View {
+  var title: String
+  var awards: [AwardInformation]
+  @Binding var selected: AwardInformation?
+  var namespace: Namespace.ID
 
   var body: some View {
-    GeometryReader { proxy in
-      let width = proxy.size.width
-      let height = proxy.size.height
-      let storeWidth = width / 6
-      let storeHeight = storeWidth / 1.75
-      let storeSpacing = width / 5
-      let firstStoreOffset = flight.terminal == "A" ?
-      width - storeSpacing :
-      storeSpacing - storeWidth
-      let direction = flight.terminal == "A" ? -1.0 : 1.0
-      ForEach(stores.indices, id: \.self) { index in
-        let store = stores[index]
-        let xOffset =
-        Double(index) * storeSpacing * direction + firstStoreOffset
-        RoundedRectangle(cornerRadius: 5.0)
-          .foregroundColor(
-            Color(
-              hue: 0.3333,
-              saturation: 1.0 - store.howBusy,
-              brightness: 1.0 - store.howBusy
-            )
+    Section(
+      header: Text(title)
+        .frame(maxWidth: .infinity)
+        .font(.title)
+        .foregroundColor(.white)
+        .background(
+          .ultraThinMaterial,
+          in: RoundedRectangle(cornerRadius: 10)
+        )
+    ) {
+      ForEach(awards, id: \.self) { award in
+        AwardCardView(award: award)
+          .foregroundColor(.black)
+          .aspectRatio(0.67, contentMode: .fit)
+          .onTapGesture {
+            withAnimation {
+              selected = award
+            }
+          }
+          .matchedGeometryEffect(
+            id: award.hashValue,
+            in: namespace,
+            anchor: .topLeading
           )
-          .overlay(
-            Text(store.shortName)
-              .font(.footnote)
-              .foregroundColor(.white)
-              .shadow(radius: 5)
-          )
-          .frame(width: storeWidth, height: storeHeight)
-          .offset(x: xOffset, y: height * 0.4)
       }
     }
   }
 }
 
-struct TerminalStoresView_Previews: PreviewProvider {
+struct AwardsGrid_Previews: PreviewProvider {
+  @Namespace static var namespace
+
   static var previews: some View {
-    TerminalStoresView(flight: FlightData.generateTestFlight(date: Date()))
+    AwardGrid(
+      title: "Test",
+      awards: AppEnvironment().awardList,
+      selected: .constant(nil),
+      namespace: namespace
+    )
   }
 }

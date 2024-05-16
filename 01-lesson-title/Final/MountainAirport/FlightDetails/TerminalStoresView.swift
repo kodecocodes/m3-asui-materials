@@ -30,6 +30,7 @@ import SwiftUI
 
 struct TerminalStoresView: View {
   var flight: FlightInformation
+  @State private var showStores = false
 
   var stores: [TerminalStore] {
     if flight.terminal == "A" {
@@ -52,8 +53,7 @@ struct TerminalStoresView: View {
       let direction = flight.terminal == "A" ? -1.0 : 1.0
       ForEach(stores.indices, id: \.self) { index in
         let store = stores[index]
-        let xOffset =
-        Double(index) * storeSpacing * direction + firstStoreOffset
+        let xOffset = Double(index) * storeSpacing * direction + firstStoreOffset
         RoundedRectangle(cornerRadius: 5.0)
           .foregroundColor(
             Color(
@@ -69,8 +69,17 @@ struct TerminalStoresView: View {
               .shadow(radius: 5)
           )
           .frame(width: storeWidth, height: storeHeight)
-          .offset(x: xOffset, y: height * 0.4)
+          .offset(
+            x: showStores ?
+              xOffset :
+              firstStoreOffset - direction * width,
+            y: height * 0.4
+          )
+          .animation(.easeOut.delay(Double(index) * 0.35), value: showStores)
       }
+    }
+    .onAppear {
+      showStores = true
     }
   }
 }
