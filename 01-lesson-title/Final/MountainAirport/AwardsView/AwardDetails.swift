@@ -62,27 +62,26 @@ struct AwardDetails: View {
   }
 }
 
-struct AwardDetails_Previews: PreviewProvider {
-  static var previews: some View {
-    let award = AwardInformation(
-      imageName: "first-visit-award",
-      title: "First Visit",
-      description: "Awarded the first time you open the app while at the airport.",
-      awarded: true,
-      stars: 1
-    )
+#Preview("Awarded View") {
+  let award = AwardInformation(
+    imageName: "first-visit-award",
+    title: "First Visit",
+    description: "Awarded the first time you open the app while at the airport.",
+    awarded: true,
+    stars: 1
+  )
 
-    let award2 = AwardInformation(
-      imageName: "rainy-day-award",
-      title: "Rainy Day",
-      description: "Your flight was delayed because of weather.",
-      awarded: false,
-      stars: 3
-    )
+  return AwardDetails(award: award)
+}
 
-    Group {
-      AwardDetails(award: award)
-      AwardDetails(award: award2)
-    }
-  }
+#Preview("Unawarded View") {
+  let award = AwardInformation(
+    imageName: "rainy-day-award",
+    title: "Rainy Day",
+    description: "Your flight was delayed because of weather.",
+    awarded: false,
+    stars: 3
+  )
+
+  return AwardDetails(award: award)
 }

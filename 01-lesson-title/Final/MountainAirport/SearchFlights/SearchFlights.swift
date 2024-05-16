@@ -144,12 +144,10 @@ struct SearchFlights: View {
   }
 }
 
-struct SearchFlights_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationStack {
-      SearchFlights(flightData: FlightData.generateTestFlights(date: Date())
-      )
-    }
-    .environmentObject(AppEnvironment())
+#Preview {
+  NavigationStack {
+    SearchFlights(flightData: FlightData.generateTestFlights(date: Date())
+    )
   }
+  .environmentObject(AppEnvironment())
 }

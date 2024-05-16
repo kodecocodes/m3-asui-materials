@@ -114,12 +114,10 @@ struct HistoryPieChart: View {
   }
 }
 
-struct HistoryPieChart_Previews: PreviewProvider {
-  static var previews: some View {
-    HistoryPieChart(
-      flightHistory: FlightData.generateTestFlightHistory(
-        date: Date()
-      ).history
-    )
-  }
+#Preview {
+  HistoryPieChart(
+    flightHistory: FlightData.generateTestFlightHistory(
+      date: Date()
+    ).history
+  )
 }

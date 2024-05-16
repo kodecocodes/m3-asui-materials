@@ -61,8 +61,6 @@ struct TerminalBView: View {
   }
 }
 
-struct TerminalBView_Previews: PreviewProvider {
-  static var previews: some View {
-    TerminalBView()
-  }
+#Preview {
+  TerminalBView()
 }

@@ -104,11 +104,9 @@ struct AwardsView: View {
 }
 
 
-struct AwardsView_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationStack {
-      AwardsView()
-    }
-    .environmentObject(AppEnvironment())
+#Preview {
+  NavigationStack {
+    AwardsView()
   }
+  .environmentObject(AppEnvironment())
 }

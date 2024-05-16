@@ -64,15 +64,13 @@ struct AwardGrid: View {
   }
 }
 
-struct AwardsGrid_Previews: PreviewProvider {
-  @Namespace static var namespace
+#Preview {
+  @Namespace var namespace
 
-  static var previews: some View {
-    AwardGrid(
-      title: "Test",
-      awards: AppEnvironment().awardList,
-      selected: .constant(nil),
-      namespace: namespace
-    )
-  }
+  return AwardGrid(
+    title: "Test",
+    awards: AppEnvironment().awardList,
+    selected: .constant(nil),
+    namespace: namespace
+  )
 }

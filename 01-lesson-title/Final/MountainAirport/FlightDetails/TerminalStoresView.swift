@@ -84,8 +84,6 @@ struct TerminalStoresView: View {
   }
 }
 
-struct TerminalStoresView_Previews: PreviewProvider {
-  static var previews: some View {
-    TerminalStoresView(flight: FlightData.generateTestFlight(date: Date()))
-  }
+#Preview {
+  TerminalStoresView(flight: FlightData.generateTestFlight(date: Date()))
 }

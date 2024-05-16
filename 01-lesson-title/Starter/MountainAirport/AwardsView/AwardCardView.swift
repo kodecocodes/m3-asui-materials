@@ -65,18 +65,16 @@ struct AwardCardView: View {
   }
 }
 
-struct AwardCardView_Previews: PreviewProvider {
-  static var previews: some View {
-    let award = AwardInformation(
-      imageName: "first-visit-award",
-      title: "First Visit",
-      description: "Awarded the first time you open the app while at the airport.",
-      awarded: true,
-      stars: 2
-    )
-    AwardCardView(award: award)
-      .frame(width: 150, height: 220)
-      .padding()
-      .background(Color.black)
-  }
+#Preview {
+  let award = AwardInformation(
+    imageName: "first-visit-award",
+    title: "First Visit",
+    description: "Awarded the first time you open the app while at the airport.",
+    awarded: true,
+    stars: 2
+  )
+  return AwardCardView(award: award)
+    .frame(width: 150, height: 220)
+    .padding()
+    .background(Color.black)
 }

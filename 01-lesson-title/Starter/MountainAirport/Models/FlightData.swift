@@ -297,4 +297,22 @@ class FlightData: ObservableObject {
     }
     return flight
   }
+
+  static var sampleTerminalAFlight: FlightInformation {
+    let data = FlightData()
+    guard let flight = data.flights.first(where: { $0.terminal == "A" }) else {
+      fatalError("No sample flight found for terminal A.")
+    }
+
+    return flight
+  }
+
+  static var sampleTerminalBFlight: FlightInformation {
+    let data = FlightData()
+    guard let flight = data.flights.first(where: { $0.terminal == "B" }) else {
+      fatalError("No sample flight found for terminal B.")
+    }
+
+    return flight
+  }
 }

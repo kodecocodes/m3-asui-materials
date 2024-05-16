@@ -48,10 +48,8 @@ struct FlightDetailHeader: View {
   }
 }
 
-struct FlightDetailHeader_Previews: PreviewProvider {
-  static var previews: some View {
-    FlightDetailHeader(
-      flight: FlightData.generateTestFlight(date: Date())
-    )
-  }
+#Preview {
+  FlightDetailHeader(
+    flight: FlightData.generateTestFlight(date: Date())
+  )
 }

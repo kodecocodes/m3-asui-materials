@@ -73,10 +73,8 @@ struct FlightRow: View {
   }
 }
 
-struct FlightRow_Previews: PreviewProvider {
-  static var previews: some View {
-    FlightRow(
-      flight: FlightData.generateTestFlight(date: Date())
-    )
-  }
+#Preview {
+  FlightRow(
+    flight: FlightData.generateTestFlight(date: Date())
+  )
 }

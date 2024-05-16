@@ -53,15 +53,14 @@ struct TerminalMapView: View {
   }
 }
 
-struct TerminalMapView_Previews: PreviewProvider {
-  static var previews: some View {
-    Group {
-      TerminalMapView(
-        flight: FlightData().flights.first { $0.terminal == "A" }!
-      )
-      TerminalMapView(
-        flight: FlightData().flights.first { $0.terminal == "B" }!
-      )
-    }
-  }
+#Preview("Terminal A") {
+  TerminalMapView(
+    flight: FlightData.sampleTerminalAFlight
+  )
+}
+
+#Preview("Termainl B") {
+  TerminalMapView(
+    flight: FlightData.sampleTerminalBFlight
+  )
 }

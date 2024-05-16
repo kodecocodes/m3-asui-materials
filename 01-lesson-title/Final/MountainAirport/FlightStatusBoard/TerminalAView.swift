@@ -61,8 +61,6 @@ struct TerminalAView: View {
   }
 }
 
-struct TerminalAView_Previews: PreviewProvider {
-  static var previews: some View {
-    TerminalAView()
-  }
+#Preview {
+  TerminalAView()
 }

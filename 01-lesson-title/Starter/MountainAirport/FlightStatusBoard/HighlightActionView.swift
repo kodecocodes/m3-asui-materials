@@ -52,11 +52,9 @@ struct HighlightActionView: View {
   }
 }
 
-struct HighlightActionView_Previews: PreviewProvider {
-  static var previews: some View {
-    HighlightActionView(
-      flightId: 1,
-      highlightedIds: .constant([1])
-    )
-  }
+#Preview {
+  HighlightActionView(
+    flightId: 1,
+    highlightedIds: .constant([1])
+  )
 }

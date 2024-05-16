@@ -80,10 +80,8 @@ struct FlightInfoPanel: View {
   }
 }
 
-struct FlightInfoPanel_Previews: PreviewProvider {
-  static var previews: some View {
-    FlightInfoPanel(
-      flight: FlightData.generateTestFlight(date: Date())
-    )
-  }
+#Preview {
+  FlightInfoPanel(
+    flight: FlightData.generateTestFlight(date: Date())
+  )
 }

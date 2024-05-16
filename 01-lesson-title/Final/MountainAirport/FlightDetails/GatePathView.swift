@@ -143,23 +143,22 @@ struct WalkPath: Shape {
   }
 }
 
-struct FlightTerminalMap_Previews: PreviewProvider {
-  static var testGateA: FlightInformation {
+#Preview("Gate A") {
+  var testGateA: FlightInformation {
     let flight = FlightData.generateTestFlight(date: Date())
     flight.gate = "A3"
     return flight
   }
 
-  static var testGateB: FlightInformation {
+  return GatePathView(flight: testGateA)
+}
+
+#Preview("Gate B") {
+  var testGateB: FlightInformation {
     let flight = FlightData.generateTestFlight(date: Date())
     flight.gate = "B4"
     return flight
   }
 
-  static var previews: some View {
-    Group {
-      GatePathView(flight: testGateA)
-      GatePathView(flight: testGateB)
-    }
-  }
+  return GatePathView(flight: testGateB)
 }

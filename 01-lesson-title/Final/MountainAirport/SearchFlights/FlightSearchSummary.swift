@@ -60,10 +60,8 @@ struct FlightSearchSummary: View {
   }
 }
 
-struct FlightSearchSummary_Previews: PreviewProvider {
-  static var previews: some View {
-    FlightSearchSummary(
-      flight: FlightData.generateTestFlight(date: Date())
-    )
-  }
+#Preview {
+  FlightSearchSummary(
+    flight: FlightData.generateTestFlight(date: Date())
+  )
 }

@@ -77,10 +77,8 @@ struct FlightTimeHistory: View {
   }
 }
 
-struct FlightTimeHistory_Previews: PreviewProvider {
-  static var previews: some View {
-    FlightTimeHistory(
-      flight: FlightData.generateTestFlight(date: Date())
-    )
-  }
+#Preview {
+  FlightTimeHistory(
+    flight: FlightData.generateTestFlight(date: Date())
+  )
 }

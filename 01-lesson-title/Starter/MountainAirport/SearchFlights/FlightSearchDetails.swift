@@ -124,12 +124,10 @@ struct FlightSearchDetails: View {
   }
 }
 
-struct FlightSearchDetails_Previews: PreviewProvider {
-  static var previews: some View {
-    FlightSearchDetails(
-      flight: FlightData.generateTestFlight(date: Date()),
-      showModal: .constant(true)
-    )
-    .environmentObject(AppEnvironment())
-  }
+#Preview {
+  FlightSearchDetails(
+    flight: FlightData.generateTestFlight(date: Date()),
+    showModal: .constant(true)
+  )
+  .environmentObject(AppEnvironment())
 }

@@ -52,8 +52,6 @@ struct AwardStars: View {
   }
 }
 
-struct AwardStars_Previews: PreviewProvider {
-  static var previews: some View {
-    AwardStars()
-  }
+#Preview {
+  AwardStars()
 }

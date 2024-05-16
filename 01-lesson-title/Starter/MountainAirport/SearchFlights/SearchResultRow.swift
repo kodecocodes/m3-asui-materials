@@ -58,10 +58,8 @@ struct SearchResultRow: View {
   }
 }
 
-struct SearchResultRow_Previews: PreviewProvider {
-  static var previews: some View {
-    SearchResultRow(
-      flight: FlightData.generateTestFlight(date: Date())
-    ).environmentObject(AppEnvironment())
-  }
+#Preview {
+  SearchResultRow(
+    flight: FlightData.generateTestFlight(date: Date())
+  ).environmentObject(AppEnvironment())
 }

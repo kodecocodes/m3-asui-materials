@@ -83,14 +83,12 @@ struct FlightList: View {
   }
 }
 
-struct FlightList_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationStack {
-      FlightList(
-        flights: FlightData.generateTestFlights(date: Date()),
-        highlightedIds: .constant([15])
-      )
-    }
-    .environmentObject(AppEnvironment())
+#Preview {
+  NavigationStack {
+    FlightList(
+      flights: FlightData.generateTestFlights(date: Date()),
+      highlightedIds: .constant([15])
+    )
   }
+  .environmentObject(AppEnvironment())
 }

@@ -77,10 +77,8 @@ struct FlightStatusIcon: View {
   }
 }
 
-struct FlightStatusIcon_Previews: PreviewProvider {
-  static var previews: some View {
-    FlightStatusIcon(
-      flight: FlightData.generateTestFlight(date: Date())
-    )
-  }
+#Preview {
+  FlightStatusIcon(
+    flight: FlightData.generateTestFlight(date: Date())
+  )
 }

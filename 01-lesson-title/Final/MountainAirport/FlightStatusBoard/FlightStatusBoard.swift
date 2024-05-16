@@ -117,13 +117,11 @@ struct FlightStatusBoard: View {
   }
 }
 
-struct FlightStatusBoard_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationStack {
-      FlightStatusBoard(
-        flights: FlightData.generateTestFlights(date: Date())
-      )
-    }
-    .environmentObject(AppEnvironment())
+#Preview {
+  NavigationStack {
+    FlightStatusBoard(
+      flights: FlightData.generateTestFlights(date: Date())
+    )
   }
+  .environmentObject(AppEnvironment())
 }

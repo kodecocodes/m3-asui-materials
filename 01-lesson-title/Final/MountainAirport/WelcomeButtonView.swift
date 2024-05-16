@@ -69,13 +69,11 @@ struct WelcomeButtonView: View {
   }
 }
 
-struct WelcomeButtonView_Previews: PreviewProvider {
-  static var previews: some View {
-    WelcomeButtonView(
-      title: "Flight Status",
-      subTitle: "Departure and Arrival Information",
-      imageName: "airplane",
-      imageAngle: -45.0
-    )
-  }
+#Preview {
+  WelcomeButtonView(
+    title: "Flight Status",
+    subTitle: "Departure and Arrival Information",
+    imageName: "airplane",
+    imageAngle: -45.0
+  )
 }
