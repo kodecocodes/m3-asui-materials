@@ -28,7 +28,7 @@
 
 import SwiftUI
 
-struct GenericTimeline<Content, T>: View where Content: View {
+struct GenericTimeline<Content, T>: View where Content: View, T: Identifiable {
   // 1
   var events: [T]
   let content: (T) -> Content
@@ -108,8 +108,8 @@ struct GenericTimeline<Content, T>: View where Content: View {
           Text(hourString(hour), style: .time)
             .font(.title2)
           // 4
-          ForEach(hourFlights.indices, id: \.self) { index in
-            content(hourFlights[index])
+          ForEach(hourFlights) { flight in
+            content(flight)
           }
         }
       }
@@ -118,10 +118,10 @@ struct GenericTimeline<Content, T>: View where Content: View {
 }
 
 #Preview {
-  GenericTimeline(
-    events: FlightData.generateTestFlights(
-      date: Date()
-    ),
+  let testFlights = FlightData.generateTestFlights(date: Date())
+
+  return GenericTimeline(
+    events: testFlights,
     timeProperty: \.localTime
   ) { flight in
     FlightCardView(flight: flight)
