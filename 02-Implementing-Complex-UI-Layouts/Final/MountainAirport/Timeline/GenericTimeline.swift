@@ -30,7 +30,7 @@ import SwiftUI
 
 struct GenericTimeline<Content, T>: View where Content: View, T: Identifiable {
   // 1
-  var events: [T]
+  let events: [T]
   let content: (T) -> Content
   let timeProperty: KeyPath<T, Date>
 
