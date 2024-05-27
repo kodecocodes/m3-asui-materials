@@ -47,6 +47,7 @@ extension MapCoordinator: MKMapViewDelegate {
     _ mapView: MKMapView,
     rendererFor overlay: MKOverlay
   ) -> MKOverlayRenderer {
+    // 1
     if overlay is MKCircle {
       let renderer = MKCircleRenderer(overlay: overlay)
       renderer.fillColor = UIColor.black
@@ -54,6 +55,7 @@ extension MapCoordinator: MKMapViewDelegate {
       return renderer
     }
 
+    // 2
     if overlay is MKGeodesicPolyline {
       let renderer = MKPolylineRenderer(overlay: overlay)
       renderer.strokeColor = UIColor(
@@ -63,6 +65,7 @@ extension MapCoordinator: MKMapViewDelegate {
         alpha: 0.3
       )
       renderer.lineWidth = 3.0
+      // 3
       renderer.strokeStart = 0.0
       renderer.strokeEnd = fraction
       return renderer
@@ -82,30 +85,39 @@ struct FlightMapView: UIViewRepresentable {
     view.delegate = context.coordinator
     return view
   }
+
   func makeCoordinator() -> MapCoordinator {
     MapCoordinator(self, progress: progress)
   }
   
   func updateUIView(_ view: MKMapView, context: Context) {
+    let startPoint = MKMapPoint(startCoordinate)
+    let endPoint = MKMapPoint(endCoordinate)
+
+    // 1
+    let distance = startPoint.distance(to: endPoint)
+    let cityRadius = distance / 100.0
+    
+    // 2
     let startOverlay = MKCircle(
       center: startCoordinate,
-      radius: 10000.0
+      radius: cityRadius
     )
+    
     let endOverlay = MKCircle(
       center: endCoordinate,
-      radius: 10000.0
+      radius: cityRadius
     )
+    
+    // 3
     let flightPath = MKGeodesicPolyline(
       coordinates: [startCoordinate, endCoordinate],
       count: 2
     )
-    view.addOverlays([startOverlay, endOverlay, flightPath])
-
     
-    // 1
-    let startPoint = MKMapPoint(startCoordinate)
-    let endPoint = MKMapPoint(endCoordinate)
-
+    // 4
+    view.addOverlays([startOverlay, endOverlay, flightPath])
+    
     // 2
     let minXPoint = min(startPoint.x, endPoint.x)
     let minYPoint = min(startPoint.y, endPoint.y)
