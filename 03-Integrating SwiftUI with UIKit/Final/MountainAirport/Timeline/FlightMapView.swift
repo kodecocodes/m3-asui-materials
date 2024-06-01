@@ -79,7 +79,7 @@ struct FlightMapView: UIViewRepresentable {
   var startCoordinate: CLLocationCoordinate2D
   var endCoordinate: CLLocationCoordinate2D
   var progress: Double
-  
+
   func makeUIView(context: Context) -> MKMapView {
     let view = MKMapView(frame: .zero)
     view.delegate = context.coordinator
@@ -89,7 +89,7 @@ struct FlightMapView: UIViewRepresentable {
   func makeCoordinator() -> MapCoordinator {
     MapCoordinator(self, progress: progress)
   }
-  
+
   func updateUIView(_ view: MKMapView, context: Context) {
     let startPoint = MKMapPoint(startCoordinate)
     let endPoint = MKMapPoint(endCoordinate)
@@ -97,27 +97,27 @@ struct FlightMapView: UIViewRepresentable {
     // 1
     let distance = startPoint.distance(to: endPoint)
     let cityRadius = distance / 100.0
-    
+
     // 2
     let startOverlay = MKCircle(
       center: startCoordinate,
       radius: cityRadius
     )
-    
+
     let endOverlay = MKCircle(
       center: endCoordinate,
       radius: cityRadius
     )
-    
+
     // 3
     let flightPath = MKGeodesicPolyline(
       coordinates: [startCoordinate, endCoordinate],
       count: 2
     )
-    
+
     // 4
     view.addOverlays([startOverlay, endOverlay, flightPath])
-    
+
     // 2
     let minXPoint = min(startPoint.x, endPoint.x)
     let minYPoint = min(startPoint.y, endPoint.y)
@@ -162,4 +162,3 @@ struct FlightMapView: UIViewRepresentable {
   )
   .frame(width: 300, height: 300)
 }
-
