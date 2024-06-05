@@ -28,7 +28,7 @@
 
 import SwiftUI
 
-struct GenericTimeline<Content, T>: View where Content: View, T: Identifiable {
+struct GenericTimelineView<Content, T>: View where Content: View, T: Identifiable {
   // 1
   let events: [T]
   let content: (T) -> Content
@@ -120,7 +120,7 @@ struct GenericTimeline<Content, T>: View where Content: View, T: Identifiable {
 #Preview {
   let testFlights = FlightData.generateTestFlights(date: Date())
 
-  return GenericTimeline(
+  return GenericTimelineView(
     events: testFlights,
     timeProperty: \.localTime
   ) { flight in

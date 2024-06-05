@@ -36,7 +36,7 @@ struct FlightTimelineView: View {
       Image("background-view")
         .resizable()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-      GenericTimeline(
+      GenericTimelineView(
         events: flights,
         timeProperty: \.localTime) { flight in
           FlightCardView(flight: flight)

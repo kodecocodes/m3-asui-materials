@@ -29,7 +29,7 @@
 		A973A0112BFA6B680024A552 /* DepartureTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973A0102BFA6B680024A552 /* DepartureTimeView.swift */; };
 		A973A0132BFA6CD60024A552 /* ArrivalTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973A0122BFA6CD60024A552 /* ArrivalTimeView.swift */; };
 		A973A0152BFA6FBF0024A552 /* FlightProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973A0142BFA6FBF0024A552 /* FlightProgressView.swift */; };
-		A973A0172BFA72690024A552 /* GenericTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973A0162BFA72690024A552 /* GenericTimeline.swift */; };
+		A973A0172BFA72690024A552 /* GenericTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A973A0162BFA72690024A552 /* GenericTimelineView.swift */; };
 		A98E3DC1252F838400C4AAD9 /* AwardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E3DC0252F838400C4AAD9 /* AwardCardView.swift */; };
 		A998D86925212B8F00DC64A7 /* FlightList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998D86825212B8F00DC64A7 /* FlightList.swift */; };
 		A998D86D25212BB200DC64A7 /* FlightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A998D86C25212BB200DC64A7 /* FlightRow.swift */; };
@@ -81,7 +81,7 @@
 		A973A0102BFA6B680024A552 /* DepartureTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTimeView.swift; sourceTree = "<group>"; };
 		A973A0122BFA6CD60024A552 /* ArrivalTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrivalTimeView.swift; sourceTree = "<group>"; };
 		A973A0142BFA6FBF0024A552 /* FlightProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightProgressView.swift; sourceTree = "<group>"; };
-		A973A0162BFA72690024A552 /* GenericTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTimeline.swift; sourceTree = "<group>"; };
+		A973A0162BFA72690024A552 /* GenericTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTimelineView.swift; sourceTree = "<group>"; };
 		A98E3DC0252F838400C4AAD9 /* AwardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardCardView.swift; sourceTree = "<group>"; };
 		A998D86825212B8F00DC64A7 /* FlightList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightList.swift; sourceTree = "<group>"; };
 		A998D86C25212BB200DC64A7 /* FlightRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightRow.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 				A973A0102BFA6B680024A552 /* DepartureTimeView.swift */,
 				A973A0122BFA6CD60024A552 /* ArrivalTimeView.swift */,
 				A973A0142BFA6FBF0024A552 /* FlightProgressView.swift */,
-				A973A0162BFA72690024A552 /* GenericTimeline.swift */,
+				A973A0162BFA72690024A552 /* GenericTimelineView.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				A92CC5E4250E7AEA0010BF40 /* FlightDetails.swift in Sources */,
 				A98E3DC1252F838400C4AAD9 /* AwardCardView.swift in Sources */,
 				A9E462442509B44800128AB1 /* FlightInformation.swift in Sources */,
-				A973A0172BFA72690024A552 /* GenericTimeline.swift in Sources */,
+				A973A0172BFA72690024A552 /* GenericTimelineView.swift in Sources */,
 				A9DB9FE829BD49C4009EE9A0 /* AwardStars.swift in Sources */,
 				A9AC654729BB9BE500CF79CA /* TerminalStore.swift in Sources */,
 				A9CB5E1A253A54F9004253E8 /* CheckInInfo.swift in Sources */,
