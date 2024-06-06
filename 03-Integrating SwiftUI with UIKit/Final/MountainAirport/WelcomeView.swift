@@ -90,7 +90,7 @@ struct WelcomeView: View {
         imageName: "timelapse"
       )
     )
-    
+
     if
       let flightId = appEnvironment.lastFlightId,
       let flight = flightInfo.getFlightById(flightId) {

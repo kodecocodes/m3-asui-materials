@@ -131,11 +131,11 @@ class FlightInformation: NSObject {
     timeFormatter.timeStyle = .short
     return timeFormatter.string(from: time)
   }
-  
+
   var localAirportLocation: CLLocationCoordinate2D {
     CLLocationCoordinate2D(latitude: 35.655, longitude: -83.4411)
   }
-  
+
   var startingAirportLocation: CLLocationCoordinate2D {
     if direction == .arrival {
       return CLLocationCoordinate2D(latitude: otherCoordinates.lat, longitude: otherCoordinates.long)
